@@ -1,32 +1,68 @@
 import results from './results-1648956529971.json';
+import './App.css';
 function App() {
   console.table(results);
   return (
-    <div className="App">
+    <div className="w-full h-auto bg-slate-400 flex flex-col items-center">
       <header className="App-header">
-        <h1>Supreme Eureka Front</h1>
+        <h1 className="">Supreme Eureka Front</h1>
       </header>
-      <div className="App-body">
+      <div>
         {results.map(({ position, username, rating, matches }) => {
           return (
-            <div key={position}>
-              <h2>{`${position} - ${username}`}</h2>
-              <p>Rating: {rating}</p>
-              <ul>
+            <div key={position} className="py-2 px-2 bg-white rounded-lg my-4">
+              <div className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <h2 className="px-6 py-4 font-medium text-lg text-gray-900 dark:text-white whitespace-nowrap">{`${position} - ${username}`}</h2>
+                <p>Rating: {rating}</p>
+              </div>
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 {matches.map(
                   ({ opponent, opponentDeck, result, type, replay }) => {
                     return (
-                      <li>
-                        <p>{opponent}</p>
-                        <p>{opponentDeck}</p>
-                        <p>{result}</p>
-                        <p>{type}</p>
-                        <a href={replay}>replay</a>
-                      </li>
+                      <>
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                          <tr className="content-center">
+                            <th scope="col" className="px-6 py-3">
+                              Opponent
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Opponent Deck
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Result
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Game Type
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Replay
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                          <td
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                          >
+                            {opponent}
+                          </td>
+                          <td className="px-6 py-4">{opponentDeck}</td>
+                          <td className="px-6 py-4">{result}</td>
+                          <td className="px-6 py-4">{type}</td>
+                          <td>
+                            <a
+                              href={replay}
+                              className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
+                            >
+                              Go to duel
+                            </a>
+                          </td>
+                        </tbody>
+                      </>
                     );
                   }
                 )}
-              </ul>
+              </table>
             </div>
           );
         })}
