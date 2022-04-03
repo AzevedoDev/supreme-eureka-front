@@ -104,7 +104,15 @@ function App() {
                           <td className="px-6 py-4">{playerDeck}</td>
                           <td className="px-6 py-4">{opponentDeck}</td>
                           <td className="px-6 py-4">{duration}</td>
-                          <td className="px-6 py-4">{result}</td>
+                          <td
+                            className={`px-6 py-4 ${
+                              result === 'LOST'
+                                ? 'text-red-500'
+                                : 'text-green-400'
+                            }`}
+                          >
+                            {result}
+                          </td>
                           <td className="px-6 py-4">{type}</td>
                           <td className="px-6 py-4">
                             {date.replaceAll('-', '/')}
