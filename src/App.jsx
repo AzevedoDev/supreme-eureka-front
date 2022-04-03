@@ -92,6 +92,7 @@ function App() {
                               <a
                                 href={replay}
                                 className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
+                                target={'_blank'}
                               >
                                 Go to duel
                               </a>
