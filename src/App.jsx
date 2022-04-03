@@ -1,4 +1,4 @@
-import results from './results-1648956529971.json';
+import results from './results.json';
 import './App.css';
 function App() {
   return (
