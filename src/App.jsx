@@ -48,6 +48,34 @@ function App() {
                   </p>
                 </div>
                 <table className="w-full table- text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr className="content-center">
+                      <th scope="col" className="px-6 py-3">
+                        Opponent
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Player Deck
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Opponent Deck
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Duration
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Result
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Game Type
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Date
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Replay
+                      </th>
+                    </tr>
+                  </thead>
                   {matches.map(
                     (
                       {
@@ -63,64 +91,34 @@ function App() {
                       index
                     ) => {
                       return (
-                        <>
-                          <thead
-                            key={index}
-                            className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+                        <tbody
+                          key={index}
+                          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                        >
+                          <td
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap "
                           >
-                            <tr className="content-center">
-                              <th scope="col" className="px-6 py-3">
-                                Opponent
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Player Deck
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Opponent Deck
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Duration
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Result
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Game Type
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Date
-                              </th>
-                              <th scope="col" className="px-6 py-3">
-                                Replay
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td
-                              scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap "
+                            {opponent}
+                          </td>
+                          <td className="px-6 py-4">{playerDeck}</td>
+                          <td className="px-6 py-4">{opponentDeck}</td>
+                          <td className="px-6 py-4">{duration}</td>
+                          <td className="px-6 py-4">{result}</td>
+                          <td className="px-6 py-4">{type}</td>
+                          <td className="px-6 py-4">
+                            {date.replaceAll('-', '/')}
+                          </td>
+                          <td>
+                            <a
+                              href={replay}
+                              className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
+                              target={'_blank'}
                             >
-                              {opponent}
-                            </td>
-                            <td className="px-6 py-4">{playerDeck}</td>
-                            <td className="px-6 py-4">{opponentDeck}</td>
-                            <td className="px-6 py-4">{duration}</td>
-                            <td className="px-6 py-4">{result}</td>
-                            <td className="px-6 py-4">{type}</td>
-                            <td className="px-6 py-4">
-                              {date.replaceAll('-', '/')}
-                            </td>
-                            <td>
-                              <a
-                                href={replay}
-                                className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
-                                target={'_blank'}
-                              >
-                                Go to duel
-                              </a>
-                            </td>
-                          </tbody>
-                        </>
+                              Go to duel
+                            </a>
+                          </td>
+                        </tbody>
                       );
                     }
                   )}
