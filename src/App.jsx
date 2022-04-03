@@ -17,6 +17,8 @@ function App() {
             loses,
             lastUpdate,
           }) => {
+            const totalMatches = Number(wins) + Number(loses);
+            const winPercentage = (Number(wins) / totalMatches) * 100;
             return (
               <div
                 key={position}
@@ -29,11 +31,14 @@ function App() {
                       Rating: {rating}
                     </p>
                     <p className="px-6 font-medium text-lg text-gray-900 dark:text-white">
+                      Win rate: {winPercentage.toFixed(1)}%
+                    </p>
+                    <p className="px-6 font-medium text-lg text-gray-900 dark:text-white">
                       Wins: {wins}
                     </p>
                     <p className="px-6 font-medium text-lg text-gray-900 dark:text-white">
                       Loses: {loses}
-                    </p>{' '}
+                    </p>
                     <p className="px-6 font-medium text-lg text-gray-900 dark:text-white">
                       Last Update: {new Date(lastUpdate).toLocaleDateString()}
                     </p>
