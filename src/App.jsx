@@ -65,10 +65,10 @@ function App() {
                           >
                             <tr className="content-center">
                               <th scope="col" className="px-6 py-3">
-                                Player Deck
+                                Opponent
                               </th>
                               <th scope="col" className="px-6 py-3">
-                                Opponent
+                                Player Deck
                               </th>
                               <th scope="col" className="px-6 py-3">
                                 Opponent Deck
