@@ -42,10 +42,19 @@ function App() {
                     Replays
                   </p>
                 </div>
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full table- text-sm text-left text-gray-500 dark:text-gray-400">
                   {matches.map(
                     (
-                      { opponent, opponentDeck, result, type, replay, date },
+                      {
+                        opponent,
+                        opponentDeck,
+                        result,
+                        type,
+                        replay,
+                        date,
+                        duration,
+                        playerDeck,
+                      },
                       index
                     ) => {
                       return (
@@ -56,10 +65,16 @@ function App() {
                           >
                             <tr className="content-center">
                               <th scope="col" className="px-6 py-3">
+                                Player Deck
+                              </th>
+                              <th scope="col" className="px-6 py-3">
                                 Opponent
                               </th>
                               <th scope="col" className="px-6 py-3">
                                 Opponent Deck
+                              </th>
+                              <th scope="col" className="px-6 py-3">
+                                Duration
                               </th>
                               <th scope="col" className="px-6 py-3">
                                 Result
@@ -75,14 +90,16 @@ function App() {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                          <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                              className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap "
                             >
                               {opponent}
                             </td>
+                            <td className="px-6 py-4">{playerDeck}</td>
                             <td className="px-6 py-4">{opponentDeck}</td>
+                            <td className="px-6 py-4">{duration}</td>
                             <td className="px-6 py-4">{result}</td>
                             <td className="px-6 py-4">{type}</td>
                             <td className="px-6 py-4">
