@@ -114,9 +114,7 @@ function App() {
                             {result}
                           </td>
                           <td className="px-6 py-4">{type}</td>
-                          <td className="px-6 py-4">
-                            {date.replaceAll('-', '/')}
-                          </td>
+                          <td className="px-6 py-4">{date}</td>
                           <td>
                             <a
                               href={replay}
