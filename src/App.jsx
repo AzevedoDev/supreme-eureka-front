@@ -4,11 +4,11 @@ import './App.css';
 function App() {
   useHashFragment();
   return (
-    <div className="w-full h-auto bg-slate-400 flex flex-col items-center">
+    <div className="bg-slate-400 flex flex-col items-center">
       <header className="App-header">
         <h1 className="">Supreme Eureka Front</h1>
       </header>
-      <div>
+      <div className="lg:container max-w-full">
         {results.map(
           ({
             position,
@@ -25,9 +25,9 @@ function App() {
               <div
                 id={`position-${position}`}
                 key={Math.random()}
-                className="py-2 px-2 bg-white rounded-lg my-4"
+                className="lg:py-2 lg:px-2 px-1 py-1 bg-white rounded-lg my-4"
               >
-                <div className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 overflow-x-auto w-full">
                   <h2
                     className="px-6 py-4 font-medium text-lg text-gray-900 dark:text-white whitespace-nowrap cursor-pointer"
                     onClick={() => {
@@ -40,7 +40,7 @@ function App() {
                       }
                     }}
                   >{`${position} - ${username}`}</h2>
-                  <div className="flex w-full justify-evenly">
+                  <div className="flex w-full lg:justify-evenly lg:flex-row flex-col">
                     <p className="px-6 font-medium text-lg text-gray-900 dark:text-white">
                       Rating: {rating}
                     </p>
@@ -61,88 +61,90 @@ function App() {
                     Replays
                   </p>
                 </div>
-                <table className="w-full table- text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr className="content-center">
-                      <th scope="col" className="px-6 py-3">
-                        Opponent
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Player Deck
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Opponent Deck
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Duration
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Result
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Game Type
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Date
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Replay
-                      </th>
-                    </tr>
-                  </thead>
-                  {matches.map(
-                    (
-                      {
-                        opponent,
-                        opponentDeck,
-                        result,
-                        type,
-                        replay,
-                        date,
-                        duration,
-                        playerDeck,
-                      },
-                      index
-                    ) => {
-                      return (
-                        <tbody
-                          key={index}
-                          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                        >
-                          <td
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap "
+                <div className="overflow-x-auto lg:w-full">
+                  <table className="text-sm text-left text-gray-500 dark:text-gray-400 overflow-hidden whitespace-nowrap w-full">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr className="content-center">
+                        <th scope="col" className="px-6 py-3">
+                          Opponent
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Player Deck
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Opponent Deck
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Duration
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Result
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Game Type
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Date
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Replay
+                        </th>
+                      </tr>
+                    </thead>
+                    {matches.map(
+                      (
+                        {
+                          opponent,
+                          opponentDeck,
+                          result,
+                          type,
+                          replay,
+                          date,
+                          duration,
+                          playerDeck,
+                        },
+                        index
+                      ) => {
+                        return (
+                          <tbody
+                            key={index}
+                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                           >
-                            {opponent}
-                          </td>
-                          <td className="px-6 py-4">{playerDeck}</td>
-                          <td className="px-6 py-4">{opponentDeck}</td>
-                          <td className="px-6 py-4">{duration}</td>
-                          <td
-                            className={`px-6 py-4 ${
-                              result === 'LOST'
-                                ? 'text-red-500'
-                                : 'text-green-400'
-                            }`}
-                          >
-                            {result}
-                          </td>
-                          <td className="px-6 py-4">{type}</td>
-                          <td className="px-6 py-4">{date}</td>
-                          <td>
-                            <a
-                              href={replay}
-                              className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
-                              target={'_blank'}
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap "
                             >
-                              Go to duel
-                            </a>
-                          </td>
-                        </tbody>
-                      );
-                    }
-                  )}
-                </table>
+                              {opponent}
+                            </td>
+                            <td className="px-6 py-4">{playerDeck}</td>
+                            <td className="px-6 py-4">{opponentDeck}</td>
+                            <td className="px-6 py-4">{duration}</td>
+                            <td
+                              className={`px-6 py-4 ${
+                                result === 'LOST'
+                                  ? 'text-red-500'
+                                  : 'text-green-400'
+                              }`}
+                            >
+                              {result}
+                            </td>
+                            <td className="px-6 py-4">{type}</td>
+                            <td className="px-6 py-4">{date}</td>
+                            <td className="text-center">
+                              <a
+                                href={replay}
+                                className="bg-slate-600 border-1 text-white w-48 h-12 p-2 rounded-full hover:bg-slate-700"
+                                target={'_blank'}
+                              >
+                                Go to duel
+                              </a>
+                            </td>
+                          </tbody>
+                        );
+                      }
+                    )}
+                  </table>
+                </div>
               </div>
             );
           }
