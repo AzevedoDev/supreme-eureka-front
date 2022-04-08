@@ -1,18 +1,8 @@
 import results from './results.json';
-import { useRef, useEffect } from 'react';
+import { useHashFragment } from './hooks/useHashFragment';
 import './App.css';
 function App() {
-  const refDuel = useRef();
-  useEffect(() => {
-    function goToDuel() {
-      if (refDuel.current) {
-        refDuel.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    if (window.location.hash.includes('#position')) {
-      goToDuel();
-    }
-  }, []);
+  useHashFragment();
   return (
     <div className="w-full h-auto bg-slate-400 flex flex-col items-center">
       <header className="App-header">
@@ -31,10 +21,8 @@ function App() {
           }) => {
             const totalMatches = Number(wins) + Number(loses);
             const winPercentage = (Number(wins) / totalMatches) * 100;
-            refDuel.current = `#position-${position}`;
             return (
               <div
-                ref={refDuel}
                 id={`position-${position}`}
                 key={Math.random()}
                 className="py-2 px-2 bg-white rounded-lg my-4"
@@ -44,7 +32,12 @@ function App() {
                     className="px-6 py-4 font-medium text-lg text-gray-900 dark:text-white whitespace-nowrap cursor-pointer"
                     onClick={() => {
                       const location = `${window.location.hostname}/#position-${position}`;
-                      navigator.clipboard.writeText(location);
+                      if (window.location.hostname === 'localhost') {
+                        const locationLocalhost = `http://localhost:3000/#position-${position}`;
+                        navigator.clipboard.writeText(locationLocalhost);
+                      } else {
+                        navigator.clipboard.writeText(location);
+                      }
                     }}
                   >{`${position} - ${username}`}</h2>
                   <div className="flex w-full justify-evenly">
