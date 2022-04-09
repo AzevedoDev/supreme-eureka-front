@@ -1,4 +1,4 @@
-import results from './results.json';
+import results from 'https://github.com/AzevedoDev/supreme-eureka/blob/b460da58b39bd7a40a4f840ee8f9349175af9408/data/results.json';
 import { useHashFragment } from './hooks/useHashFragment';
 import './App.css';
 function App() {
