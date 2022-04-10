@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [results, setResult] = useState([]);
   const octokit = new Octokit({
-    auth: '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',
+    auth: import.meta.env.GITHUB_TOKEN,
   });
   useHashFragment();
   useEffect(() => {
