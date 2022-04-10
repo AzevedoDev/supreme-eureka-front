@@ -1,8 +1,25 @@
-import results from 'https://github.com/AzevedoDev/supreme-eureka/blob/b460da58b39bd7a40a4f840ee8f9349175af9408/data/results.json';
 import { useHashFragment } from './hooks/useHashFragment';
+import { Octokit } from 'https://cdn.skypack.dev/@octokit/core';
 import './App.css';
+import { useEffect, useState } from 'react';
 function App() {
+  const [results, setResult] = useState([]);
+  const octokit = new Octokit({
+    auth: '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',
+  });
   useHashFragment();
+  useEffect(() => {
+    octokit
+      .request(
+        'GET /repos/AzevedoDev/supreme-eureka/contents/data/results.json'
+      )
+      .then(({ data }) => data)
+      .then((data) => {
+        fetch(data.download_url)
+          .then((res) => res.json())
+          .then((data) => setResult(data));
+      });
+  }, []);
   return (
     <div className="bg-slate-400 flex flex-col items-center">
       <header className="App-header">
